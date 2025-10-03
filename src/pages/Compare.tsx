@@ -41,6 +41,7 @@ interface ValidationRow {
   status: "pass" | "fail";
   comment?: string;
   retlRequired: boolean;
+  retlSourceOption?: string;
   adminApproval?: "approved" | "rejected" | null;
 }
 
@@ -222,6 +223,7 @@ const Compare = () => {
                 <TableHead>Status</TableHead>
                 <TableHead>Comment</TableHead>
                 <TableHead>rETL Req?</TableHead>
+                <TableHead>rETL Source?</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Admin Review</TableHead>
               </TableRow>
@@ -309,6 +311,27 @@ const Compare = () => {
                         );
                       }}
                     />
+                  </TableCell>
+                  <TableCell>
+                    <Select
+                      value={row.retlSourceOption}
+                      onValueChange={(value) => {
+                        setValidationData((prev) =>
+                          prev.map((r) =>
+                            r.id === row.id ? { ...r, retlSourceOption: value } : r
+                          )
+                        );
+                      }}
+                    >
+                      <SelectTrigger className="w-40">
+                        <SelectValue placeholder="Select source" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Salesforce">Salesforce</SelectItem>
+                        <SelectItem value="NetSuite">NetSuite</SelectItem>
+                        <SelectItem value="ZSCM">ZSCM</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </TableCell>
                   <TableCell>
                     <Dialog>
