@@ -34,6 +34,8 @@ import { toast } from "sonner";
 interface ValidationRow {
   id: string;
   parameter: string;
+  po: string;
+  quote: string;
   sfdc: number;
   ns: number;
   zscm: number;
@@ -50,6 +52,8 @@ const Compare = () => {
     {
       id: "1",
       parameter: "Total Revenue",
+      po: "PO-2024-001",
+      quote: "QT-2024-A1",
       sfdc: 1250000,
       ns: 1248500,
       zscm: 1250000,
@@ -60,6 +64,8 @@ const Compare = () => {
     {
       id: "2",
       parameter: "Active Customers",
+      po: "PO-2024-002",
+      quote: "QT-2024-B2",
       sfdc: 450,
       ns: 452,
       zscm: 450,
@@ -70,6 +76,8 @@ const Compare = () => {
     {
       id: "3",
       parameter: "Monthly Orders",
+      po: "PO-2024-003",
+      quote: "QT-2024-C3",
       sfdc: 3420,
       ns: 3420,
       zscm: 3425,
@@ -216,6 +224,8 @@ const Compare = () => {
             <TableHeader>
               <TableRow>
                 <TableHead>Parameter</TableHead>
+                <TableHead>PO</TableHead>
+                <TableHead>Quote</TableHead>
                 <TableHead className="text-right">SFDC</TableHead>
                 <TableHead className="text-right">NetSuite</TableHead>
                 <TableHead className="text-right">ZSCM</TableHead>
@@ -232,6 +242,8 @@ const Compare = () => {
               {validationData.map((row) => (
                 <TableRow key={row.id}>
                   <TableCell className="font-medium">{row.parameter}</TableCell>
+                  <TableCell>{row.po}</TableCell>
+                  <TableCell>{row.quote}</TableCell>
                   <TableCell className="text-right">
                     {row.sfdc.toLocaleString()}
                   </TableCell>
